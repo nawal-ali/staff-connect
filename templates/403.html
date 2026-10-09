@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Access denied - StaffConnect{% endblock %}
+{% block content %}
+<div class="card center">
+    <h1>403 - Access denied</h1>
+    <p>You do not have permission to do that.</p>
+    <a class="btn" href="{% url 'home' %}">Back to home</a>
+</div>
+{% endblock %}

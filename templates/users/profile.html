@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}My profile - StaffConnect{% endblock %}
+{% block content %}
+<div class="card profile-card">
+    <img class="avatar" src="{{ profile.avatar_url }}" alt="Avatar of {{ profile.name }}">
+    <div>
+        <h1>{{ profile.name }}</h1>
+        <p class="meta">@{{ profile.user.username }} &middot; {{ profile.user.email }}</p>
+        <p><strong>Department:</strong> {{ profile.department|default:"Not set" }}</p>
+        <p><strong>Bio:</strong> {{ profile.bio|default:"No bio yet." }}</p>
+        <p class="meta">Member since {{ profile.user.date_joined|date:"j F Y" }}</p>
+        <a class="btn" href="{% url 'edit_profile' %}">Edit profile</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Login - StaffConnect{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>Log in</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {{ form.as_p }}
+        <button class="btn" type="submit">Log in</button>
+    </form>
+    <p><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
+    <p>No account yet? <a href="{% url 'register' %}">Register</a></p>
+</div>
+{% endblock %}

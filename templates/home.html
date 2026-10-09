@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Announcements - StaffConnect{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h1>Company Announcements</h1>
+    {% if user.is_authenticated %}
+        <a class="btn" href="{% url 'post_create' %}">New announcement</a>
+    {% endif %}
+</div>
+
+{% for post in posts %}
+    <article class="card">
+        <h2><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h2>
+        <p class="meta">By {{ post.author_name }} &middot; {{ post.created_at|date:"j M Y, H:i" }}</p>
+        <p>{{ post.body|truncatechars:160 }}</p>
+        <a href="{% url 'post_detail' post.slug %}">Read more</a>
+    </article>
+{% empty %}
+    <div class="card center">
+        <p>No announcements yet.</p>
+    </div>
+{% endfor %}
+
+{% if is_paginated %}
+    <nav class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">&laquo; Previous</a>
+        {% endif %}
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next &raquo;</a>
+        {% endif %}
+    </nav>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+# Secrets and local data must never end up in the image
+.env
+db.sqlite3
+media/*
+!media/.gitkeep
+
+# Not needed at runtime
+venv/
+.venv/
+.git/
+.gitignore
+__pycache__/
+*.pyc
+*.log
+.vscode/
+.idea/
+Dockerfile
+.dockerignore
+README.md
